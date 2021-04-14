@@ -1,0 +1,35 @@
+
+
+#chatContainer{
+    display:block;
+    width: 25rem;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 1rem;
+    margin:1rem;
+}
+
+#msg{
+    display: inline-block;
+    width: 16rem;
+    height: 2rem;
+    margin: 0.5rem;
+}
+#username{
+    display: inline-block;
+    width: 5rem;
+    height: 2rem;
+    margin: 0.5rem;
+}
+
+.chat-tittle{
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.button{
+    display: block;
+    width: 25rem;
+    height: 2rem;
+}

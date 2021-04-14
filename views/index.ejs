@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/index.css" rel="stylesheet" type="text/css">
+    <title>Chat dos Programadores</title>
+</head>
+<body>
+   <div id = "chatContainer">
+    <h1 class = "chat-tittle"> Chat dos Programadores</h1>
+    <div id = "chat"></div>
+    <input type="text" name="textUser" id="msg">
+    <input type="text" placeholder="USERNAME" id = "username">
+    <input type = 'button' onclick="enviar()" value="ENVIAR" class="button">
+   </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script>
+    const socket = io('http://localhost:3000')
+    socket.on('disconnect',()=>{
+    })
+    socket.on('frontMsg',({msg,username})=>{
+        //recebendo/formantando msg
+        const formatedMsg = `${username} - ${msg}`
+        const chat = document.querySelector("#chat")
+        //criando paragrafo
+        const p = document.createElement('p')
+        p.innerHTML = formatedMsg
+        chat.appendChild(p)
+    })
+    function enviar (){
+        //enviando msg
+        const msg = document.querySelector("#msg").value
+        const username = document.querySelector("#username").value
+
+        socket.emit('msg',{msg,username})
+    }
+</script>
+</html>
